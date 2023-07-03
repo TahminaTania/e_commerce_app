@@ -25,38 +25,31 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Row(
-        children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.home)),
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => CartPage())));
-              },
-              icon: Icon(Icons.favorite)),
-        ],
-      )),
       body: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, state) {
           if (state is ProductLoadedState) {
             return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: ResponsiveWidget.isLargeScreen(context)
-                    ? 5
-                    : ResponsiveWidget.isMediumScreen(context)
-                        ? 3
-                        : ResponsiveWidget.isSmallScreen(context)
-                            ? 2
-                            : 4,
-                childAspectRatio: ResponsiveWidget.isLargeScreen(context)
-                    ? 0.9
-                    : ResponsiveWidget.isMediumScreen(context)
-                        ? 0.99
-                        : ResponsiveWidget.isSmallScreen(context)
-                            ? 1.2
-                            : 1,
-              ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.6,
+                  // crossAxisCount: ResponsiveWidget.isLargeScreen(context)
+                  //     ? 5
+                  //     : ResponsiveWidget.isMediumScreen(context)
+                  //         ? 3
+                  //         : ResponsiveWidget.isSmallScreen(context)
+                  //             ? 2
+                  //             : 4,
+                  // childAspectRatio: ResponsiveWidget.isLargeScreen(context)
+                  //     ? 0.9
+                  //     : ResponsiveWidget.isMediumScreen(context)
+                  //         ? 3 / 2
+                  //         : ResponsiveWidget.isSmallScreen(context)
+                  //             ? 1.2
+                  //             : 1,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 20),
+              scrollDirection: Axis.vertical,
+              //shrinkWrap: true,
               itemCount: state.products.length,
               itemBuilder: (context, index) {
                 final product = state.products[index];
@@ -65,7 +58,18 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
             );
           } else {
             return Container(
-              child: Text(state.toString()),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(state.toString()),
+                  ],
+                ),
+              ),
             );
           }
         },
