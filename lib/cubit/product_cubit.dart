@@ -29,4 +29,8 @@ class ProductCubit extends Cubit<ProductState> {
       emit(ProductInitialState());
     }
   }
+
+  void home() {
+    emit(ProductInitialState());
+  }
 }

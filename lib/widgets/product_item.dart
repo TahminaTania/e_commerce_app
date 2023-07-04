@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/Cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/cubit/product_cubit.dart';
+import 'package:e_commerce_app/details/deatil_product.dart';
 import 'package:e_commerce_app/models/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,10 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          // Handle product item click
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DetailsPage(product: product)));
         },
         child: Card(
           color: Color.fromARGB(255, 230, 226, 226),
