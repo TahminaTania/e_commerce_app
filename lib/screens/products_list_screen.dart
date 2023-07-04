@@ -16,10 +16,11 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final cubit = context.read<ProductCubit>();
-      cubit.fetchdata();
-    });
+    context.read<ProductCubit>().fetchdata();
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   final cubit = context.read<ProductCubit>();
+    //   cubit.fetchdata();
+    // });
   }
 
   @override

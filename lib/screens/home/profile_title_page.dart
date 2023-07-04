@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/search/search_product.dart';
 import 'package:flutter/material.dart';
 
 class ProfileTitlePage extends StatelessWidget {
@@ -44,9 +45,14 @@ class ProfileTitlePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.search,
-                  color: Colors.black,
+                IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: SearchProduct());
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(
                   width: 20,

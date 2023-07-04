@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/Cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/SignUp/formz_widget/formz_widget.dart';
 import 'package:e_commerce_app/SignUp/sign_up.dart';
+import 'package:e_commerce_app/category/category_page.dart';
 import 'package:e_commerce_app/cubit/product_cubit.dart';
 
 import 'package:e_commerce_app/data/api_clients.dart';
@@ -22,21 +23,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ProductCubit(repository: ProductRepository()),
-        ),
-        BlocProvider(
-          create: (context) => CartCubit(),
-        ),
-      ],
-      child: MaterialApp(
+        providers: [
+          BlocProvider(
+            create: (context) => ProductCubit(repository: ProductRepository()),
+          ),
+          BlocProvider(
+            create: (context) => CartCubit(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'E-Commerce App',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          // home: HomePageBottom(),
-          home: SignUp()),
-    );
+          //home: HomePageBottom(),
+          //home: SignUp()),
+          home: CategoryPage(),
+        ));
   }
 }
