@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/SignUp/formz_widget/formz_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
@@ -5,6 +6,14 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Formz Example')),
+        body: const Padding(
+          padding: EdgeInsets.all(24),
+          child: SingleChildScrollView(child: MyForm()),
+        ),
+      ),
+    );
   }
 }
