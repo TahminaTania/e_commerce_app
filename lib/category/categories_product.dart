@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 
 class CategoriesProduct extends StatelessWidget {
   final List<Product> products;
-  const CategoriesProduct({Key? key, required this.products}) : super(key: key);
+  //final String category;
+  const CategoriesProduct({
+    Key? key,
+    required this.products,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

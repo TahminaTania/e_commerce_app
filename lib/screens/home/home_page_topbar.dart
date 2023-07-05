@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/category/category_landing.dart';
+import 'package:e_commerce_app/category/category_page.dart';
 import 'package:e_commerce_app/screens/home/product_landing_page.dart';
 import 'package:e_commerce_app/screens/home/profile_title_page.dart';
 import 'package:e_commerce_app/screens/home/smooth_page_slider.dart';
@@ -42,7 +44,8 @@ class _HomePageTopbarState extends State<HomePageTopbar> {
           children: [
             ProductLandingPage(),
             // SmoothPageSlider(),
-            Icon(Icons.directions_transit),
+            CategoryLanding()
+            // Icon(Icons.directions_transit),
           ],
         ),
       ),
