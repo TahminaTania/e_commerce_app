@@ -1,4 +1,6 @@
 import 'package:e_commerce_app/Cart/cart_page.dart';
+import 'package:e_commerce_app/favorite/favoirite_page.dart';
+import 'package:e_commerce_app/favorite/widget/favorite_items.dart';
 import 'package:e_commerce_app/screens/home/home_page_topbar.dart';
 import 'package:e_commerce_app/screens/products_list_screen.dart';
 import 'package:e_commerce_app/settings/settings_page.dart';
@@ -18,11 +20,12 @@ class _HomePageBottomState extends State<HomePageBottom> {
   static List<Widget> _widgetOptions = <Widget>[
     HomePageTopbar(),
     CartPage(),
-    Text(
-      'Index 1:',
-      style: optionStyle,
-    ),
+    FavoiritePage(),
     SettingsPage()
+    // Text(
+    //   'Index 1:',
+    //   style: optionStyle,
+    // ),
   ];
 
   void _onItemTapped(int index) {

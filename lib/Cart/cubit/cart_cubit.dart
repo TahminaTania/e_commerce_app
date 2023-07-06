@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(CartState([], 0));
+  CartCubit() : super(CartState([], 0, []));
 
   void addToCart(Product product) {
     print("got the addToCart");
@@ -16,18 +16,21 @@ class CartCubit extends Cubit<CartState> {
     }
 
     final updatedCartItems = [...state.cartItems, product];
-    emit(CartState(updatedCartItems, 1));
+    final updatedFavItems = [...state.favItems];
+    emit(CartState(updatedCartItems, 1, updatedFavItems));
   }
 
   void removeFromCart(Product product) {
     final updatedCartItems = [...state.cartItems];
     final updatedProductCount = 0;
     updatedCartItems.remove(product);
-    emit(CartState(updatedCartItems, 1));
+    final updatedFavItems = [...state.favItems];
+    emit(CartState(updatedCartItems, 1, updatedFavItems));
   }
 
   void incrementCount(Product product) {
     final cartItems = List.of(state.cartItems);
+    final updatedFavItems = [...state.favItems];
     // Find the product in the cart
     final existingProductIndex =
         cartItems.indexWhere((p) => p.id == product.id);
@@ -35,21 +38,43 @@ class CartCubit extends Cubit<CartState> {
       cartItems[existingProductIndex].productCount++;
     }
 
-    emit(CartState(cartItems, state.productCount + 1));
+    emit(CartState(cartItems, state.productCount + 1, updatedFavItems));
   }
 
   void decrementCount(Product product) {
     final cartItems = List.of(state.cartItems);
+    final updatedFavItems = [...state.favItems];
     // Find the product in the cart
     final existingProductIndex =
         cartItems.indexWhere((p) => p.id == product.id);
     if (existingProductIndex != -1) {
       if (cartItems[existingProductIndex].productCount > 0) {
         cartItems[existingProductIndex].productCount--;
-      }else{
-        cartItems.removeAt(existingProductIndex); 
+      } else {
+        cartItems.removeAt(existingProductIndex);
       }
     }
-    emit(CartState(cartItems, state.productCount - 1));
+    emit(CartState(cartItems, state.productCount - 1, updatedFavItems));
+  }
+
+  void addToFav(Product product) {
+    print("got the addToFav");
+    final isItemInFav = state.favItems.any((item) => item.id == product.id);
+    //final updatedProductCount = {...state.productCount};
+    if (isItemInFav) {
+      return;
+    }
+
+    final updatedFavItems = [...state.favItems, product];
+    final updatedCartItems = [...state.cartItems];
+    emit(CartState(updatedCartItems, 1, updatedFavItems));
+  }
+
+  void removeFromFav(Product product) {
+    final updatedCartItems = [...state.cartItems];
+    final updatedProductCount = 0;
+    final updatedFavItems = [...state.favItems];
+    updatedFavItems.remove(product);
+    emit(CartState(updatedCartItems, 1, updatedFavItems));
   }
 }

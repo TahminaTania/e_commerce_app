@@ -5,11 +5,17 @@ import 'package:e_commerce_app/models/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItem extends StatefulWidget {
   final Product product;
+  late bool isfav;
 
-  const ProductItem({required this.product});
+  ProductItem({required this.product, required this.isfav});
 
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +23,7 @@ class ProductItem extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => DetailsPage(product: product)));
+                  builder: (context) => DetailsPage(product: widget.product)));
         },
         child: Card(
           color: Color.fromARGB(255, 230, 226, 226),
@@ -49,7 +55,7 @@ class ProductItem extends StatelessWidget {
                                 //borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
                                     fit: BoxFit.contain,
-                                    image: NetworkImage(product.image)))
+                                    image: NetworkImage(widget.product.image)))
                             // child: Image(image: NetworkImage(product.image)),
                             ),
                       ),
@@ -67,11 +73,26 @@ class ProductItem extends StatelessWidget {
                             ),
                             child: IconButton(
                                 onPressed: () {
-                                  context.read<CartCubit>().addToCart(product);
+                                  // why i have to use widget.product? it was working just with product when i am using stateless ???
+                                  widget.isfav
+                                      ? context
+                                          .read<CartCubit>()
+                                          .removeFromFav(widget.product)
+                                      : context
+                                          .read<CartCubit>()
+                                          .addToFav(widget.product);
+                                  setState(() {
+                                    print(
+                                        "is state working as- ${widget.isfav}");
+                                    widget.isfav = !widget.isfav;
+                                    print(
+                                        "is state working as- ${widget.isfav}");
+                                  });
                                 },
                                 icon: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  color: Colors.black,
+                                  Icons.favorite,
+                                  color:
+                                      widget.isfav ? Colors.red : Colors.black,
                                   size: 18,
                                 )),
                           ),
@@ -83,7 +104,7 @@ class ProductItem extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
-                    product.title,
+                    widget.product.title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 10,
@@ -94,7 +115,7 @@ class ProductItem extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 8.0),
                   child: Text(
-                    'Price: \$${product.price.toStringAsFixed(2)}',
+                    'Price: \$${widget.product.price.toStringAsFixed(2)}',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

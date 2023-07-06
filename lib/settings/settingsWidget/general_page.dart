@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/settings/userProfile/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class GeneralPage extends StatelessWidget {
@@ -36,7 +37,15 @@ class GeneralPage extends StatelessWidget {
                 title: Container(height: 30, child: Text("${entries[index]}")),
                 leading: IconButton(onPressed: () {}, icon: icon[index]),
                 trailing: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+                    onPressed: () {
+                      index == 0
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilePage()))
+                          : null;
+                    },
+                    icon: Icon(Icons.arrow_forward_ios)),
               ),
             );
           }),

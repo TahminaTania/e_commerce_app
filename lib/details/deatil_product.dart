@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/Cart/cart_page.dart';
+import 'package:e_commerce_app/Cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/cubit/product_cubit.dart';
 import 'package:e_commerce_app/models/products.dart';
 import 'package:e_commerce_app/screens/home/home_page_bottomnav.dart';
@@ -56,7 +58,12 @@ class DetailsPage extends StatelessWidget {
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CartPage()));
+                            },
                             icon: Icon(
                               Icons.shopping_bag_outlined,
                               color: Colors.black,
@@ -186,7 +193,12 @@ class DetailsPage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Icon(Icons.shopping_bag),
+                              IconButton(
+                                icon: Icon(Icons.shopping_bag),
+                                onPressed: () {
+                                  context.read<CartCubit>().addToCart(product);
+                                },
+                              ),
                               Text(
                                 "Add To Cart",
                                 style: TextStyle(fontSize: 18),

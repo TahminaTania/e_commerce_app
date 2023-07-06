@@ -26,7 +26,10 @@ class CategoriesProduct extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (context, index) {
           final product = products[index];
-          return ProductItem(product: product);
+          return ProductItem(
+            product: product,
+            isfav: false,
+          );
         },
       ),
     );

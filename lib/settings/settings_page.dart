@@ -1,5 +1,5 @@
-import 'package:e_commerce_app/settings/general_page.dart';
-import 'package:e_commerce_app/settings/preferences_page.dart';
+import 'package:e_commerce_app/settings/settingsWidget/general_page.dart';
+import 'package:e_commerce_app/settings/settingsWidget/preferences_page.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {

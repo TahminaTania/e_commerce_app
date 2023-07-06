@@ -54,7 +54,10 @@ class _ProductsListScreenState extends State<ProductsListScreen> {
               itemCount: state.products.length,
               itemBuilder: (context, index) {
                 final product = state.products[index];
-                return ProductItem(product: product);
+                return ProductItem(
+                  product: product,
+                  isfav: false,
+                );
               },
             );
           } else {

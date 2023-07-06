@@ -52,7 +52,10 @@ class SearchProduct extends SearchDelegate {
             itemBuilder: (context, index) {
               final product = products[index];
 
-              return ProductItem(product: product);
+              return ProductItem(
+                product: product,
+                isfav: false,
+              );
             },
           );
         } else if (snapshot.hasError) {
