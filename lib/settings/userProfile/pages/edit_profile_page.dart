@@ -6,6 +6,8 @@ import 'package:e_commerce_app/settings/userProfile/widget/textfield_widget.dart
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
+// Copied from here---> https://flutterawesome.com/create-a-flutter-user-profile-page-ui-where-you-can-access-and-edit-information/
+
 class EditProfilePage extends StatefulWidget {
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
