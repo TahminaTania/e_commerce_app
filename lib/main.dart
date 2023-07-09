@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          //home: HomePageBottom(),
+          home: HomePageBottom(),
           //home: ProfilePage(),
-          home: SplashScreen(),
+          //home: SplashScreen(),
         ));
   }
 }
