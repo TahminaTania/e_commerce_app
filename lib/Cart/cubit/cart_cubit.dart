@@ -25,7 +25,8 @@ class CartCubit extends Cubit<CartState> {
     final updatedProductCount = 0;
     updatedCartItems.remove(product);
     final updatedFavItems = [...state.favItems];
-    emit(CartState(updatedCartItems, 1, updatedFavItems));
+    // final productCount = state.productCount;
+    emit(CartState(updatedCartItems, 0, updatedFavItems));
   }
 
   void incrementCount(Product product) {
@@ -39,6 +40,7 @@ class CartCubit extends Cubit<CartState> {
     }
 
     emit(CartState(cartItems, state.productCount + 1, updatedFavItems));
+    print("got the incrementCount, ${state.productCount}");
   }
 
   void decrementCount(Product product) {
@@ -55,6 +57,7 @@ class CartCubit extends Cubit<CartState> {
       }
     }
     emit(CartState(cartItems, state.productCount - 1, updatedFavItems));
+    print("got the decrementCount, ${state.productCount}");
   }
 
   void addToFav(Product product) {

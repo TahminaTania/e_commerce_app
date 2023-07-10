@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:e_commerce_app/Cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/models/products.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,7 @@ class ProductActionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        // final cartItem = state.cartItems;
-        // final product = cartItem[index];
+        final items = state.cartItems;
         return Container(
           padding: EdgeInsets.all(10),
           width: MediaQuery.of(context).size.width,
@@ -35,7 +35,7 @@ class ProductActionsWidget extends StatelessWidget {
                         child: Text(
                           product.title,
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: MediaQuery.of(context).size.width / 25,
                               fontWeight: FontWeight.bold,
                               color: Colors.black),
                         ),
@@ -69,7 +69,7 @@ class ProductActionsWidget extends StatelessWidget {
                             Container(
                                 child: Text(
                               product.productCount.toString(),
-                              style: TextStyle(fontSize: 15),
+                              style: TextStyle(fontSize: 15, color: Colors.red),
                             )),
                             Container(
                               width: 30,
@@ -79,9 +79,30 @@ class ProductActionsWidget extends StatelessWidget {
                                   color: Colors.white),
                               child: IconButton(
                                   onPressed: () {
-                                    BlocProvider.of<CartCubit>(context)
-                                        .decrementCount(product);
-                                    print(" clicked removed ");
+                                    if (items.contains(product)) {
+                                      BlocProvider.of<CartCubit>(context)
+                                          .decrementCount(product);
+                                      print(" clicked removed ");
+                                    } else {
+                                      final snackBar = SnackBar(
+                                        /// need to set following properties for best effect of awesome_snackbar_content
+                                        elevation: 0,
+                                        //behavior: SnackBarBehavior.floating,
+                                        backgroundColor: Colors.transparent,
+                                        content: AwesomeSnackbarContent(
+                                          title: 'Not Found!',
+                                          message:
+                                              'You May be forgot to add the product on cart, Please add the product on cart first then try to remove item`s count!',
+
+                                          /// change contentType to ContentType.success, ContentType.warning or ContentType.help for variants
+                                          contentType: ContentType.failure,
+                                        ),
+                                      );
+
+                                      ScaffoldMessenger.of(context)
+                                        ..hideCurrentSnackBar()
+                                        ..showSnackBar(snackBar);
+                                    }
                                   },
                                   icon: Icon(
                                     Icons.remove,

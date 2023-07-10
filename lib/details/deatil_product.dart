@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:e_commerce_app/Cart/cart_page.dart';
 import 'package:e_commerce_app/Cart/cubit/cart_cubit.dart';
 import 'package:e_commerce_app/cubit/product_cubit.dart';

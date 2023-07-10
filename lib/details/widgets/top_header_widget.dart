@@ -25,7 +25,9 @@ class TopHeaderWidget extends StatelessWidget {
           ),
           Text(
             "detail Product",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width / 30,
+                fontWeight: FontWeight.bold),
           ),
           IconButton(
             onPressed: () {
