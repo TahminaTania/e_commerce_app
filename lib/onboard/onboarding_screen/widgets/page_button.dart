@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/screens/home/home_page_bottomnav.dart';
 import 'package:flutter/material.dart';
 
 class PageButton extends StatelessWidget {
@@ -10,7 +11,10 @@ class PageButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.8,
       // color: Colors.deepPurple,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HomePageBottom()));
+        },
         child: Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 10),
           child: Text(
