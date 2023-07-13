@@ -80,11 +80,15 @@ class _CategoryPageState extends State<CategoryPage> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.1),
+                      // image: DecorationImage(
+                      //     image: AssetImage("images/cosmetics.png"),
+                      //     fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(15)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      //crossAxisAlignment: CrossAxisAlignment.end,
                       crossAxisAlignment: index.isOdd
                           ? CrossAxisAlignment.end
                           : CrossAxisAlignment.start,
